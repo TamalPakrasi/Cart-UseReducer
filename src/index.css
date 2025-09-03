@@ -2,7 +2,7 @@
 
 @layer base {
   #root {
-    @apply min-h-[100dvh] relative bg-gray-300 grid grid-cols-[1.5fr_0.5fr];
+    @apply min-h-[100dvh] relative flex flex-col items-end;
   }
 }
 

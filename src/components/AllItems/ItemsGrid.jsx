@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { fetchAllItems } from "../services/API.service.js";
-import { ItemCard } from ".";
+import { fetchAllItems } from "../../services/API.service.js";
+import { ItemCard } from "../index.js";
 
 function ItemsGrid() {
-  const [items, setItems] = useState(["a"]);
+  const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ function ItemsGrid() {
       Loading...
     </div>
   ) : items.length > 0 ? (
-    <div className="grid grid-cols-2 gap-7 max-w-200">
+    <div className="grid grid-cols-2 gap-7 px-10">
       {items.map(({ id, ...item }) => (
         <ItemCard key={id} id={id} {...item} />
       ))}

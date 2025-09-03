@@ -1,10 +1,11 @@
 import React from "react";
-import { AllItemsSection } from "./components";
+import { AllItemsSection, CartItemsSection } from "./components";
 
 function App() {
   return (
     <>
       <AllItemsSection />
+      <CartItemsSection />
     </>
   );
 }
