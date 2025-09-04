@@ -1,7 +1,7 @@
 import React from "react";
 import { CartItem } from "../index.js";
 
-function CartGrid({ cartItems }) {
+function CartGrid({ cartItems, dispatch }) {
   return (
     <div
       className={`flex-1 overflow-y-auto px-10 my-5 ${
@@ -10,8 +10,13 @@ function CartGrid({ cartItems }) {
     >
       {cartItems.length > 0 ? (
         <div className="grid grid-cols-1 gap-7">
-          {cartItems.map(({id, ...item}) => (
-            <CartItem key={id} id={id} {...item} />
+          {cartItems.map(({ id, ...item }) => (
+            <CartItem
+              key={id}
+              id={id}
+              dispatch={dispatch}
+              {...item}
+            />
           ))}
         </div>
       ) : (

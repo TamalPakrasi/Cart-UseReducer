@@ -1,7 +1,15 @@
 import React, { memo } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-function CartItem({ id, image, title, description, price, quantity }) {
+function CartItem({
+  id,
+  image,
+  title,
+  description,
+  price,
+  quantity,
+  dispatch,
+}) {
   console.log("cartitem is rendering...");
   return (
     <div className="card relative">
@@ -22,19 +30,38 @@ function CartItem({ id, image, title, description, price, quantity }) {
         </span>
 
         <div className="flex items-center gap-2">
-          <button className="text-white bg-blue-500 hover:bg-blue-600 rounded-full px-3 py-1 text-sm font-semibold cursor-pointer">
+          <button
+            className="text-white bg-blue-500 hover:bg-blue-600 rounded-full px-3 py-1 text-sm font-semibold cursor-pointer"
+            onClick={() =>
+              dispatch({
+                type: "CHANGE_ITEM_QUANTITY",
+                payload: { id, quantity: quantity - 1 },
+              })
+            }
+          >
             -
           </button>
 
           <span className="px-3 py-1 text-base font-medium">{quantity}</span>
 
-          <button className="text-white bg-blue-500 hover:bg-blue-600 rounded-full px-3 py-1 text-sm font-semibold cursor-pointer">
+          <button
+            className="text-white bg-blue-500 hover:bg-blue-600 rounded-full px-3 py-1 text-sm font-semibold cursor-pointer"
+            onClick={() =>
+              dispatch({
+                type: "CHANGE_ITEM_QUANTITY",
+                payload: { id, quantity: quantity + 1 },
+              })
+            }
+          >
             +
           </button>
         </div>
       </div>
       <div className="absolute top-0 right-0">
-        <button className="text-white bg-red-500 px-3 py-2 cursor-pointer text-xs">
+        <button
+          className="text-white bg-red-500 px-3 py-2 cursor-pointer text-xs"
+          onClick={() => dispatch({ type: "REMOVE_ITEM", payload: { id } })}
+        >
           Remove
         </button>
       </div>

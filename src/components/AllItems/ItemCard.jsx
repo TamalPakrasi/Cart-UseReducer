@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function ItemCard({ id, image, title, description, price, dispatch }) {
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
+  
   const addToCartHandler = () => {
-    console.log("hello");
     const payload = { id, image, title, description, price, quantity: 1 };
-    setIsDisabled(true);
+    setIsAddedToCart(true);
     dispatch({ type: "ADD_TO_CART", payload });
   };
 
@@ -29,14 +29,14 @@ function ItemCard({ id, image, title, description, price, dispatch }) {
         </span>
         <button
           className={`inline-block text-white rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2 ${
-            isDisabled
+            isAddedToCart
               ? "bg-blue-300 cursor-not-allowed"
               : "bg-blue-500 hover:bg-blue-600 cursor-pointer"
           }`}
           onClick={addToCartHandler}
-          disabled={isDisabled}
+          disabled={isAddedToCart}
         >
-          {isDisabled ? "Added" : "Add to cart"}
+          {isAddedToCart ? "Added" : "Add to cart"}
         </button>
       </div>
     </div>
