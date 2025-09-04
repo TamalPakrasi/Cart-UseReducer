@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { AllItemsSection, CartItemsSection } from "./components";
+import { cartReducer } from "./utils/cartReducer.js";
 
 function App() {
+  const [cartItems, dispatch] = useReducer(cartReducer, []);
+
   return (
     <>
-      <AllItemsSection />
-      <CartItemsSection />
+      <AllItemsSection dispatch={dispatch} />
+      <CartItemsSection cartItems={cartItems} />
     </>
   );
 }

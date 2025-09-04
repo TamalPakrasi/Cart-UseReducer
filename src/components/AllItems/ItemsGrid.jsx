@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { fetchAllItems } from "../../services/API.service.js";
 import { ItemCard } from "../index.js";
 
-function ItemsGrid() {
+function ItemsGrid({ dispatch }) {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    console.log("Rendering...");
     setIsLoading(true);
 
     fetchAllItems()
@@ -21,7 +22,7 @@ function ItemsGrid() {
   ) : items.length > 0 ? (
     <div className="grid grid-cols-2 gap-7 px-10">
       {items.map(({ id, ...item }) => (
-        <ItemCard key={id} id={id} {...item} />
+        <ItemCard key={id} id={id} dispatch={dispatch} {...item} />
       ))}
     </div>
   ) : (

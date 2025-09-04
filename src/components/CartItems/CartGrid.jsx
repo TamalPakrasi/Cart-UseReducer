@@ -1,14 +1,24 @@
 import React from "react";
 import { CartItem } from "../index.js";
 
-function CartGrid() {
+function CartGrid({ cartItems }) {
   return (
-    <div className="flex-1 overflow-y-auto px-10 py-5">
-      <div className="grid grid-cols-1 gap-7">
-        <CartItem />
-        <CartItem />
-        <CartItem />
-      </div>
+    <div
+      className={`flex-1 overflow-y-auto px-10 my-5 ${
+        cartItems.length === 0 ? "flex-center" : ""
+      }`}
+    >
+      {cartItems.length > 0 ? (
+        <div className="grid grid-cols-1 gap-7">
+          {cartItems.map(({id, ...item}) => (
+            <CartItem key={id} id={id} {...item} />
+          ))}
+        </div>
+      ) : (
+        <div className="text-center font-medium text-gray-900 text-lg">
+          No items in cart
+        </div>
+      )}
     </div>
   );
 }
