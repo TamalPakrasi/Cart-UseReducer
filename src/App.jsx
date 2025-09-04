@@ -7,13 +7,8 @@ function App() {
 
   return (
     <>
-      <AllItemsSection
-        dispatch={dispatch}
-      />
-      <CartItemsSection
-        cartItems={cartItems}
-        dispatch={dispatch}
-      />
+      <AllItemsSection cartItems={cartItems} dispatch={dispatch} />
+      <CartItemsSection cartItems={cartItems} dispatch={dispatch} />
     </>
   );
 }

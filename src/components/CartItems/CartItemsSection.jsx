@@ -17,7 +17,10 @@ function CartItemsSection({ ...props }) {
             : 0
           ).toFixed(2)}
         </div>
-        <div>Total Items: {props.cartItems.length}</div>
+        <div>
+          Total Items:{" "}
+          {props.cartItems.reduce((acc, curr) => acc + curr.quantity, 0)}
+        </div>
       </div>
     </div>
   );

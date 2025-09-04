@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-function ItemCard({ id, image, title, description, price, dispatch }) {
-  const [isAddedToCart, setIsAddedToCart] = useState(false);
-  
+function ItemCard({
+  id,
+  image,
+  title,
+  description,
+  price,
+  dispatch,
+  cartItems,
+}) {
   const addToCartHandler = () => {
     const payload = { id, image, title, description, price, quantity: 1 };
-    setIsAddedToCart(true);
     dispatch({ type: "ADD_TO_CART", payload });
   };
+
+  const isAddedToCart = cartItems.length
+    ? cartItems.some((item) => item.id === id)
+    : false;
 
   return (
     <div className="card">
@@ -30,7 +39,7 @@ function ItemCard({ id, image, title, description, price, dispatch }) {
         <button
           className={`inline-block text-white rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2 ${
             isAddedToCart
-              ? "bg-blue-300 cursor-not-allowed"
+              ? "bg-green-600"
               : "bg-blue-500 hover:bg-blue-600 cursor-pointer"
           }`}
           onClick={addToCartHandler}
